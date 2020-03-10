@@ -31,6 +31,8 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'albums',
+    'artists',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
