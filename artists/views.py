@@ -15,15 +15,18 @@ def getArtists(request):
     
 def getArtistByName(request, name):
     try: 
+        #Procura artista no banco de dados
         Artist.objects.get(name__icontains=name)
         artists = Artist.objects.filter(name__icontains=name)
         data = {"results": list(artists.values("artist_id", "name"))}
         return JsonResponse(data)
     except ObjectDoesNotExist:
+        #Caso não encontre no banco percorre a API e cadastra o artista no banco
         response = requests.get('https://api.deezer.com/search/artist?q=%s' %name)
         artists_data = response.json()
         if artists_data.get('total') == 0:
-            return HttpResponse('No artist according to URL param Name')
+            #Caso não haja artista cadastrado na API do deezer, o usuário pode inserir um novo.
+            return HttpResponse('Artist was not found on the API, please register new artist.', status)
         else:
             artist = Artist(name=artists_data['data'][0]['name'], artist_id=artists_data['data'][0]['id'],link=artists_data['data'][0]['link'],tracklist=artists_data['data'][0]['tracklist'])
             artist.save()
@@ -50,8 +53,8 @@ def addArtist(request):
     pi = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(N))
     if request.GET.get('name'):
         try:
-            Artist.objects.get(name__icontains=request.GET.get('name'))
-            artists = Artist.objects.filter(name__icontains=request.GET.get('name'))
+            Artist.objects.get(name=request.GET.get('name'))
+            artists = Artist.objects.filter(name=request.GET.get('name'))
             data = {"results": list(artists.values("artist_id", "name"))}
             return JsonResponse(data)
         except ObjectDoesNotExist:

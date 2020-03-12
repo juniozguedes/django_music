@@ -67,9 +67,9 @@ def addAlbum(request):
     pi = ''.join(random.choice(string.ascii_uppercase + string.digits) for _ in range(N))
     if request.GET.get('name'):
         try:
-            Album.objects.get(name__icontains=request.GET.get('name'))
-            albums = Album.objects.filter(name__icontains=request.GET.get('name'))
-            data = {"results": list(albums.values("name", "artist__name", "artist__artist_id"))}
+            Album.objects.get(name=request.GET.get('name'))
+            albums = Album.objects.filter(name=request.GET.get('name'))
+            data = {"results": list(albums.values("name", "album_id", "artist__name", "artist__artist_id"))}
             return JsonResponse(data)
         except ObjectDoesNotExist:
             if request.GET.get('artist_id'):
@@ -77,16 +77,33 @@ def addAlbum(request):
                 album_data = album_list_response.json()
                 album_list = []
                 x = 0
-                while x < (len(album_data['data'])):
-                    album_title = album_data['data'][x]['title']
-                    album_list.append(album_title)
-                    x+=1
-                if request.GET.get('name') in album_list:
-                    #album = Album(name=request.GET.get('name'), album_id=getapiequaltoartistalbum, artist=artistid)
-                    #album.save()
-                    return redirect('getAlbumByName', name=request.GET.get('name'))
+                if not album_data['error']:
+                    while x < (len(album_data['data'])):
+                        album_title = album_data['data'][x]['title']
+                        album_list.append(album_title)
+                        x+=1
+                    if request.GET.get('name') in album_list:
+                        return redirect('getAlbumByName', name=request.GET.get('name'))
+                    else:
+                        artist = Artist.objects.filter(artist_id=request.GET.get('artist_id'))
+                        if artist:
+                            album = Album(name=request.GET.get('name'), album_id=pi, artist = artist.get())
+                            album.save()
+                            return redirect('getAlbumByName', name=request.GET.get('name'))
                 else:
-                    quit()
+                    artist = Artist.objects.get(artist_id=request.GET.get('artist_id'))
+                    if not artist:
+                        artist_response = requests.get('https://api.deezer.com/artist/%s' %request.GET.get('name'))
+                        artists_data = artist_response.json()
+                        artist = Artist(name=artists_data['name'], artist_id=artists_data['id'],link=artists_data['link'],tracklist=artists_data['tracklist'])
+                        artist.save()
+                        album = Album(name=request.GET.get('name'), album_id=pi, artist = artist.get())
+                        album.save()
+                        return redirect('getAlbumByName', name=request.GET.get('name'))
+                    else:    
+                        album = Album(name=request.GET.get('name'), album_id=pi, artist = artist)
+                        album.save()
+                        return redirect('getAlbumByName', name=request.GET.get('name'))
             else:
                 return HttpResponse('The artist_id param is required to associate album to artist')
     else:
