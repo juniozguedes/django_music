@@ -1,0 +1,508 @@
+{
+	"info": {
+		"_postman_id": "c72ee5d6-97cc-481c-bd44-60fb482eda74",
+		"name": "django_music",
+		"description": "API requests to django music app.\n",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Artists",
+			"item": [
+				{
+					"name": "Get All Artists",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/artists/all",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"artists",
+								"all"
+							]
+						},
+						"description": "Return all artists from database "
+					},
+					"response": []
+				},
+				{
+					"name": "Get Artist by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/artists/getname/Black Sabb",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"artists",
+								"getname",
+								"Black Sabb"
+							]
+						},
+						"description": "Get Artist by Name\n\nEx.:\n\n{{local}}/artists/oasis"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Artist by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/artists/getid/11230",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"artists",
+								"getid",
+								"11230"
+							]
+						},
+						"description": "Return artist by Id"
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Artist by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/artists/add/?name=Alceu Valença",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"artists",
+								"add",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Alceu Valença"
+								}
+							]
+						},
+						"description": "Insert a new Artist passing artist name\n\nparam:\n\nname"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Artist by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/artists/update/?name=Banda do Menino&artist_id=OWFGYSBRV6D8LTJD9UMLY6C2QR0",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"artists",
+								"update",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Banda do Menino"
+								},
+								{
+									"key": "artist_id",
+									"value": "OWFGYSBRV6D8LTJD9UMLY6C2QR0"
+								}
+							]
+						},
+						"description": "Update Artist based on ID\nparams:\n{{name}}\n{{artist_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Artist by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/artists/delete/?artist_id=OWFGYSBRV6D8LTJD9UMLY6C2QR0",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"artists",
+								"delete",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "artist_id",
+									"value": "OWFGYSBRV6D8LTJD9UMLY6C2QR0"
+								}
+							]
+						},
+						"description": "Delete Artist by artist_id\nparams:\nartist_id"
+					},
+					"response": []
+				}
+			],
+			"description": "Requests for artists model.",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Albums",
+			"item": [
+				{
+					"name": "Get All Albums",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/albums/all",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"albums",
+								"all"
+							]
+						},
+						"description": "Return all albums from database "
+					},
+					"response": []
+				},
+				{
+					"name": "Get Album by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/albums/getname/Stadium Arcadium",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"albums",
+								"getname",
+								"Stadium Arcadium"
+							]
+						},
+						"description": "Get Album by Name\n\nEx.:\n\n{{local}}/albums/By The Way\n\n\n-> If album's artist doesn't exist in database it'll be added (If exists in API)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Album by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/albums/getid/91616",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"albums",
+								"getid",
+								"91616"
+							]
+						},
+						"description": "Return album by Id"
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Album by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/albums/add/?name=Thunderkill Secundario&artist_id=G5X3Y0G3YC9XI0NPCYK8YLK1VJB",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"albums",
+								"add",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Thunderkill Secundario"
+								},
+								{
+									"key": "artist_id",
+									"value": "G5X3Y0G3YC9XI0NPCYK8YLK1VJB"
+								}
+							]
+						},
+						"description": "Insert a new Album passing artist name & artist_id\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Album by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/albums/update/?name=Freakyyy  Styleyy&album_id=299827",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"albums",
+								"update",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Freakyyy  Styleyy"
+								},
+								{
+									"key": "album_id",
+									"value": "299827"
+								}
+							]
+						},
+						"description": "Update Album based on Album ID\nparams:\n{{name}}\n{{album_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Album by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/albums/delete/?album_id=90949",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"albums",
+								"delete",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "album_id",
+									"value": "90949"
+								}
+							]
+						},
+						"description": "Delete Artist by artist_id\nparams:\nartist_id"
+					},
+					"response": []
+				}
+			],
+			"description": "Requests for artists model.",
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Tracks",
+			"item": [
+				{
+					"name": "Get All Tracks",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/tracks/all",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"tracks",
+								"all"
+							]
+						},
+						"description": "Return all tracks from database "
+					},
+					"response": []
+				},
+				{
+					"name": "Get Track by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/tracks/getname/Basket Case",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"tracks",
+								"getname",
+								"Basket Case"
+							]
+						},
+						"description": "Get Track by Name\n\nEx.:\n\n{{local}}/tracks/Walk\n\n\n-> If track's album doesn't exist in database it'll be added (If exists in API)"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Track by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/tracks/getid/87757545",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"tracks",
+								"getid",
+								"87757545"
+							]
+						},
+						"description": "Return track by Id"
+					},
+					"response": []
+				},
+				{
+					"name": "Insert Track by Name",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/tracks/add/?name=Oxford Venus&album_id=91616",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"tracks",
+								"add",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "Oxford Venus"
+								},
+								{
+									"key": "album_id",
+									"value": "91616"
+								}
+							]
+						},
+						"description": "Insert a new Track passing track name & album_id\n"
+					},
+					"response": []
+				},
+				{
+					"name": "Update Track by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/tracks/update/?name=One More Timeee&track_id=3135553",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"tracks",
+								"update",
+								""
+							],
+							"query": [
+								{
+									"key": "name",
+									"value": "One More Timeee"
+								},
+								{
+									"key": "track_id",
+									"value": "3135553"
+								}
+							]
+						},
+						"description": "Update Track based on Track ID\nparams:\n{{name}}\n{{track_id}}"
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Track by Id",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{local}}/tracks/delete/?track_id=662879",
+							"host": [
+								"{{local}}"
+							],
+							"path": [
+								"tracks",
+								"delete",
+								""
+							],
+							"query": [
+								{
+									"key": "",
+									"value": "",
+									"disabled": true
+								},
+								{
+									"key": "track_id",
+									"value": "662879"
+								}
+							]
+						},
+						"description": "Delete Track by track_id\nparams:\ntrack_id"
+					},
+					"response": []
+				}
+			],
+			"description": "Requests for artists model.",
+			"protocolProfileBehavior": {}
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "0d7bb3ce-5179-4cc2-ae46-57008d77f497",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "10905d2f-6782-4776-802e-3fc185ba110e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "3a6e1736-6b96-4b41-b7d9-738a3a42e054",
+			"key": "local",
+			"value": "http://0.0.0.0:8000",
+			"type": "string"
+		}
+	],
+	"protocolProfileBehavior": {}
+}
