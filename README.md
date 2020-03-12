@@ -12,6 +12,17 @@
 ## Requerimentos
 -  [Docker](https://www.docker.com/)
 
+## Configurando ambiente ##
+
+#### Clonar repositório do projeto ####
+
+```bash
+
+git clone https://github.com/juniozguedes/django_music.git
+
+```
+
+
 #### Subindo imagem Docker:
 
   
@@ -26,10 +37,10 @@ sudo docker-compose up --build
 
 #### Rodando Migrations
 
-  
+Para rodar as migrations abaixo abra um novo terminal ou encerre processo do docker/django no terminal atual em que foi montada a imagem Docker (CTRL+C) 
 
 ```bash
-
+sudo docker-compose run web python manage.py makemigrations
 sudo docker-compose run web python manage.py migrate
 
 sudo docker-compose up -d --build
